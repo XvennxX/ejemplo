@@ -32,54 +32,65 @@ def nomina():
 
         print (f"Empleado : {nombres} con numero de cedula {documentos}")
 
-        if dias_laborados <= 30:
-            salario_neto = (salario_basico / 30) * dias_laborados  
-            print (f"El salario neto es de $ {salario_neto}")                
-        else:
-            print("Error: los días laborados no pueden ser mayores a 30")
-
-
-        if dias_laborados <= 30:
-            auxilio = (auxilio_trasporte / 30) * dias_laborados   
-            print (f"El valor de auxilio de trassporte es de $ {auxilio}")                
-        else:
-            print("Error: los días laborados no pueden ser mayores a 30")
-
-
-        if nocturnas+diurnas <= 48:
-            valor_diurna = ((salario_basico / 240) * 1.25) * diurnas
-            print (f"El valor de las horas extras diurnas es de $ {valor_diurna}")                
-        else:
-            print("Error: las horas extras mensuales no pueden ser mayor a 48 horas")
-
         
-        if diurnas+nocturnas <= 48:
-            valor_nocturna = ((salario_basico / 240) * 1.75) * nocturnas
-            print (f"El valor de las horas extras nocturnas es de $ {valor_nocturna}")                 
+
+ 
+        if diurnas + nocturnas > 48 and dias_laborados > 30:
+            print("Se ha execdido el limite de horas y dias laborales")
+
+        elif diurnas + nocturnas > 48:
+            print("El límite de horas extras semanales no puede ser mayor a 48")
+
+        elif dias_laborados > 30:
+            print("El límite de días laborales no puede ser mayor a 30 mensuales")
         else:
-            print("Error: las horas extras mensuales no pueden ser mayor a 48 horas")
+            #DEVENGADO
+            if dias_laborados <= 30:
+
+                salario_neto = (salario_basico / 30) * dias_laborados  
+                print (f"El salario neto es de $ {salario_neto}")                
+            else:
+                print("Error: los días laborados no pueden ser mayores a 30")
 
 
-        total_devengado = (salario_neto + auxilio + diurnas + nocturnas + comision)
-        print (f"El total devengado es de $ {total_devengado}")
+            if dias_laborados <= 30:
+                auxilio = (auxilio_trasporte / 30) * dias_laborados   
+                print (f"El valor de auxilio de trassporte es de $ {auxilio}")                
+            else:
+                print("Error: los días laborados no pueden ser mayores a 30")
 
-#DEDUCIDOS
 
-        salud = (salario_neto * 0.04)
-        print (f"El total de aporte a salud es de $ {salud}")
-
-        pension = (salario_neto * 0.04)
-        print (f"El total de aporte a pension es de $ {pension}")
-
-        total_deducido = (salud + pension + prestamo)
-        print (f"El total deducido es de $ {total_deducido}")
-
-        total_pagar = (total_devengado-total_deducido)
-        print (f"El total del salario a pagar es de $ {total_pagar}")
+            if diurnas:
+                valor_diurna = ((salario_basico / 240) * 1.25) * diurnas
+                print (f"El valor de las horas extras diurnas es de $ {valor_diurna}")                
+            else:
+                print("Error: las horas extras mensuales no pueden ser mayor a 48 horas")
 
             
+            if nocturnas :
+                valor_nocturna = ((salario_basico / 240) * 1.75) * nocturnas
+                print (f"El valor de las horas extras nocturnas es de $ {valor_nocturna}")                 
+            else:
+                print("Error: las horas extras mensuales no pueden ser mayor a 48 horas")
 
 
+            total_devengado = (salario_neto + auxilio + diurnas + nocturnas + comision)
+            print (f"El total devengado es de $ {total_devengado}")
+
+           #DEDUCIDOS
+
+            salud = (salario_neto * 0.04)
+            print (f"El total de aporte a salud es de $ {salud}")
+
+            pension = (salario_neto * 0.04)
+            print (f"El total de aporte a pension es de $ {pension}")
+
+            total_deducido = (salud + pension + prestamo)
+            print (f"El total deducido es de $ {total_deducido}")
+
+            total_pagar = (total_devengado-total_deducido)
+            print (f"El total del salario a pagar es de $ {total_pagar}")
+            
 
         
     
@@ -87,6 +98,3 @@ def nomina():
         print("Error: división por cero")
 
 nomina()
-
-
-        
